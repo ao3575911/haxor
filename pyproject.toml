@@ -15,8 +15,18 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Interpreters",
 ]
+
+[project.urls]
+Homepage = "https://github.com/ao3575911/haxor"
+Repository = "https://github.com/ao3575911/haxor"
+Issues = "https://github.com/ao3575911/haxor/issues"
+Changelog = "https://github.com/ao3575911/haxor/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 z3 = ["z3-solver>=4.12"]
