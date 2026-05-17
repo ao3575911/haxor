@@ -1,7 +1,7 @@
 # Haxor
 
 [![CI](https://github.com/ao3575911/haxor/actions/workflows/ci.yml/badge.svg)](https://github.com/ao3575911/haxor/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/haxorlang)](https://pypi.org/project/haxorlang/)
+[![PyPI](https://img.shields.io/pypi/v/hxr)](https://pypi.org/project/hxr/)
 [![GitHub Release](https://img.shields.io/github/v/release/ao3575911/haxor)](https://github.com/ao3575911/haxor/releases/latest)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -29,18 +29,18 @@ print(f"Fibonacci: {seq}")
 | **Runtime contracts** | `@verify(pre=..., post=...)` checked at call time |
 | **Plugin system** | Add builtins, modules, and pipeline hooks from Python |
 | **REPL** | Multiline input, history, inline verification, `/`-commands |
-| **No dependencies** | Pure Python — just `pip install haxorlang` |
+| **No dependencies** | Pure Python — just `pip install hxr` |
 
 ## Installation
 
 ```bash
-pip install haxorlang
+pip install hxr
 ```
 
 Optional SMT-based verification:
 
 ```bash
-pip install haxorlang z3-solver
+pip install hxr z3-solver
 ```
 
 To run from source:

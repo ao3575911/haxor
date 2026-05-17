@@ -3,7 +3,7 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "haxorlang"
+name = "hxr"
 version = "0.1.0"
 description = "A minimal, formally-verifiable programming language for 2030"
 readme = "README.md"
