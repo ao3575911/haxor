@@ -1,7 +1,7 @@
 # Haxor
 
 [![CI](https://github.com/ao3575911/haxor/actions/workflows/ci.yml/badge.svg)](https://github.com/ao3575911/haxor/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/hxr)](https://pypi.org/project/hxr/)
+[![PyPI](https://img.shields.io/pypi/v/hxr?cachSeconds=0)](https://pypi.org/project/hxr/)
 [![GitHub Release](https://img.shields.io/github/v/release/ao3575911/haxor)](https://github.com/ao3575911/haxor/releases/latest)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
