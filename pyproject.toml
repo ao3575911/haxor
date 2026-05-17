@@ -7,13 +7,13 @@ name = "haxor-lang"
 version = "0.1.0"
 description = "A minimal, formally-verifiable programming language for 2030"
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 keywords = ["programming-language", "interpreter", "formal-verification", "repl"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Topic :: Software Development :: Interpreters",
 ]
