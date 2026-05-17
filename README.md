@@ -5,6 +5,7 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![Discussions](https://img.shields.io/github/discussions/ao3575911/haxor)](https://github.com/ao3575911/haxor/discussions)
 [![PyPI](https://img.shields.io/pypi/v/haxor-lang)](https://pypi.org/project/haxor-lang/)
+[![GitHub Release](https://img.shields.io/github/v/release/ao3575911/haxor)](https://github.com/ao3575911/haxor/releases/latest)
 
 A minimal, open-source programming language inspired by Python — designed for 2030.
 
