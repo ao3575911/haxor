@@ -35,7 +35,7 @@ def cmd_run(args) -> int:
         registry.load_from_path(plugin_path)
 
     try:
-        result = haxor.run_file(args.file, verify=args.verify)
+        haxor.run_file(args.file, verify=args.verify)
         return 0
     except HaxorError as e:
         print(f"\033[31m{e}\033[0m", file=sys.stderr)

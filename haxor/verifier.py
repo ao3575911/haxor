@@ -234,7 +234,7 @@ class Verifier:
         return HType.CLASS
 
     def _type_IfStmt(self, node: IfStmt, env: AbsEnv) -> HType:
-        ct = self._type_pass(node.condition, env)
+        self._type_pass(node.condition, env)
         for stmt in node.then_body:
             self._type_pass(stmt, env)
         for ec, eb in node.elif_clauses:

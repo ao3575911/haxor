@@ -282,7 +282,6 @@ class Lexer:
                 return tt2
             return tt1
 
-        m: dict[str, TT] = {}
         if ch == '+':
             tt = two('=', TT.PLUSEQ, TT.PLUS)
         elif ch == '-':
@@ -315,7 +314,7 @@ class Lexer:
             if nxt == '=':
                 self._advance(); tt = TT.NEQ
             else:
-                raise LexError(f"Unexpected character '!'", line, col)
+                raise LexError("Unexpected character '!'", line, col)
         elif ch == '<':
             if nxt == '=':
                 self._advance(); tt = TT.LEQ

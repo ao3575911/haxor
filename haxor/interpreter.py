@@ -284,7 +284,7 @@ class Interpreter:
         try:
             it = iter(iterable)
         except TypeError:
-            raise HaxorTypeError(f"Object is not iterable", node.line)
+            raise HaxorTypeError("Object is not iterable", node.line)
         loop_env = env.child()
         try:
             for item in it:
@@ -380,7 +380,7 @@ class Interpreter:
                 except (TypeError, KeyError, IndexError) as e:
                     raise HaxorRuntimeError(str(e), line)
         else:
-            raise HaxorRuntimeError(f"Invalid assignment target", line)
+            raise HaxorRuntimeError("Invalid assignment target", line)
 
     def visit_BinOp(self, node: BinOp, env: Environment) -> Any:
         left = self.visit(node.left, env)
