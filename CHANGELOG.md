@@ -58,7 +58,7 @@ First public release.
 - 179-test pytest suite covering lexer, parser, interpreter, and verifier
 - GitHub Actions CI: test matrix (Python 3.10–3.13) + lint (ruff)
 - Automated PyPI publish on version tags via OIDC trusted publishing
-- Published to PyPI as [`haxorlang`](https://pypi.org/project/haxorlang/)
+- Published to PyPI as [`hxr`](https://pypi.org/project/hxr/)
 - Docs: `docs/language_spec.md`, `docs/plugin_guide.md`, `docs/verification.md`
 
 [0.1.0]: https://github.com/ao3575911/haxor/releases/tag/v0.1.0
