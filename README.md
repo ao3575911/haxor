@@ -1,5 +1,7 @@
 # Haxor
 
+[![CI](https://github.com/ao3575911/haxor/actions/workflows/ci.yml/badge.svg)](https://github.com/ao3575911/haxor/actions/workflows/ci.yml)
+
 A minimal, open-source programming language inspired by Python — designed for 2030.
 
 ```haxor
