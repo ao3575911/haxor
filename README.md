@@ -1,6 +1,7 @@
 # Haxor
 
 [![CI](https://github.com/ao3575911/haxor/actions/workflows/ci.yml/badge.svg)](https://github.com/ao3575911/haxor/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A minimal, open-source programming language inspired by Python — designed for 2030.
 
