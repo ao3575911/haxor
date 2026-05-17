@@ -1,13 +1,13 @@
 # Haxor
 
 [![CI](https://github.com/ao3575911/haxor/actions/workflows/ci.yml/badge.svg)](https://github.com/ao3575911/haxor/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
-[![Discussions](https://img.shields.io/github/discussions/ao3575911/haxor)](https://github.com/ao3575911/haxor/discussions)
 [![PyPI](https://img.shields.io/pypi/v/haxorlang)](https://pypi.org/project/haxorlang/)
 [![GitHub Release](https://img.shields.io/github/v/release/ao3575911/haxor)](https://github.com/ao3575911/haxor/releases/latest)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Discussions](https://img.shields.io/github/discussions/ao3575911/haxor)](https://github.com/ao3575911/haxor/discussions)
 
-A minimal, open-source programming language inspired by Python — designed for 2030.
+**Haxor** is a minimal, open-source programming language inspired by Python — built for 2030. It fits in under 10,000 lines, runs interactively in a REPL, and ships with a static verifier and a plugin system.
 
 ```haxor
 @verify(pre="n >= 0", post="result >= 0")
@@ -20,115 +20,98 @@ let seq = [fibonacci(i) for i in range(10)]
 print(f"Fibonacci: {seq}")
 ```
 
-## Why Haxor?
+## Highlights
 
-| Feature | Description |
-|---------|-------------|
-| **Python syntax** | Indentation-based blocks, familiar operators |
-| **Formal verification** | `@verify(pre=..., post=...)` contracts, static analysis |
-| **Plugin architecture** | Extend the language in Python — add builtins, modules, pipeline hooks |
-| **REPL-first** | Interactive development with history, multiline input, verification toggle |
-| **< 10k lines** | Read the whole implementation in an afternoon |
+| | |
+|---|---|
+| **Familiar syntax** | Indentation-based blocks, Python-style operators |
+| **Static verifier** | Type inference, sign analysis, missing-return detection |
+| **Runtime contracts** | `@verify(pre=..., post=...)` checked at call time |
+| **Plugin system** | Add builtins, modules, and pipeline hooks from Python |
+| **REPL** | Multiline input, history, inline verification, `/`-commands |
+| **No dependencies** | Pure Python — just `pip install haxorlang` |
+
+## Installation
+
+```bash
+pip install haxorlang
+```
+
+Optional SMT-based verification:
+
+```bash
+pip install haxorlang z3-solver
+```
+
+To run from source:
+
+```bash
+git clone https://github.com/ao3575911/haxor
+cd haxor
+pip install -e .
+```
 
 ## Quick start
 
 ```bash
-git clone https://github.com/yourname/haxor
-cd haxor
-pip install -e .            # or: python haxor_cli.py
-haxor                       # start REPL
-haxor run examples/hello.hx
-haxor verify examples/verified.hx
+haxor                        # start the REPL
+haxor run examples/hello.hx  # run a file
+haxor run file.hx --verify   # run with static analysis
+haxor verify file.hx         # static analysis only
 ```
 
-No external dependencies required.  Optional: `pip install z3-solver` for SMT-based verification.
-
-## Language at a glance
+## Language overview
 
 ```haxor
-# Variables
+# Variables with optional type annotations
 let x: int = 42
-let name = "world"
+let name = "Haxor"
 
-# Functions & closures
+# Functions, lambdas, and closures
 fn add(a, b): return a + b
-let double = fn(x): x * 2
-let triple = lambda x: x * 3
+fn make_adder(n):
+    return lambda x: x + n
+let add5 = make_adder(5)
 
-# Classes & inheritance
+# Classes and inheritance
 class Animal:
     fn init(self, name):
         self.name = name
-    fn speak(self): return "..."
 
 class Dog(Animal):
-    fn speak(self): return f"Woof! I'm {self.name}"
+    fn speak(self):
+        return f"Woof! I'm {self.name}"
 
-# Loops & comprehensions
-for i in range(5): print(i)
+d = Dog("Rex")
+print(d.speak())
+
+# Loops and comprehensions
 let evens = [x for x in range(10) if x % 2 == 0]
 
 # Imports
 import math
 from collections import Counter
 
-# Verification
+# Runtime contracts
 @verify(pre="x > 0", post="result > 0")
-fn sqrt_safe(x): return x ** 0.5
+fn sqrt_safe(x):
+    return x ** 0.5
 ```
 
-## Repository structure
+## Static verifier
 
-```
-haxor/
-├── haxor/           Language core
-│   ├── lexer.py     Tokenizer (indentation-aware)
-│   ├── parser.py    Recursive-descent parser
-│   ├── ast_nodes.py AST node definitions
-│   ├── interpreter.py Tree-walking interpreter
-│   ├── environment.py Lexical scope chain
-│   ├── verifier.py  Static analysis (type + sign + flow)
-│   ├── plugins.py   Plugin registry & hook system
-│   ├── repl.py      Interactive REPL
-│   └── stdlib/      Python-backed standard library
-├── tests/           pytest test suite
-├── examples/        Sample programs
-├── extensions/      Plugin examples (async_plugin)
-├── docs/            Language spec, plugin guide, verification docs
-└── haxor_cli.py     CLI entry point
-```
+Run `haxor verify file.hx` to catch issues before execution:
 
-## CLI
+- **Type inference** — flags annotation mismatches and undefined names
+- **Sign analysis** — detects division by zero via abstract interpretation
+- **Control-flow analysis** — warns on functions with missing `return` paths
 
 ```bash
-haxor                       # REPL
-haxor run file.hx           # run a file
-haxor run file.hx --verify  # static analysis + run
-haxor verify file.hx        # static analysis only
-haxor parse file.hx         # dump AST
-haxor run file.hx --plugin extensions/async_plugin
+$ haxor verify examples/verified.hx
+✓ examples/verified.hx: no issues found
 ```
 
-## REPL commands
-
-```
-/help     — help
-/verify   — toggle static verification
-/plugins  — list loaded plugins
-/env      — show all bindings
-/load     — load a plugin file
-/exit     — quit
-```
-
-## Running tests
-
-```bash
-pip install pytest
-pytest tests/
-pytest tests/ -v --tb=short
-```
-
-## Plugin example
+## Plugin system
 
 ```python
 # my_plugin.py
@@ -138,28 +121,51 @@ class MyPlugin(Plugin):
     PLUGIN_NAME = "my_plugin"
 
     def register(self, reg):
-        reg.register_builtin("hello", lambda: print("Hello from plugin!"))
-        reg.on("post_parse", lambda tree: print(f"Parsed {len(tree.body)} stmts"))
+        reg.register_builtin("greet", lambda name: f"Hello, {name}!")
+        reg.on("post_execute", lambda env: print("done"))
 ```
 
 ```bash
-haxor run myfile.hx --plugin my_plugin.py
+haxor run file.hx --plugin my_plugin.py
 ```
 
-## Formal verification
+Available hooks: `post_lex`, `post_parse`, `post_execute`. See [`extensions/async_plugin/`](extensions/async_plugin/) for a full example.
 
-```haxor
-@verify(pre="0 <= x and x <= 1", post="0 <= result and result <= 1")
-fn sigmoid(x):
-    import math
-    return 1.0 / (1.0 + math.exp(-x))
+## REPL commands
+
+| Command | Description |
+|---------|-------------|
+| `/verify` | Toggle static analysis on each input |
+| `/env` | Show all current bindings |
+| `/plugins` | List loaded plugins |
+| `/load <path>` | Load a plugin at runtime |
+| `/help` | Show all commands |
+| `/exit` | Quit |
+
+## Repository layout
+
+```
+haxor/
+├── haxor/            Language core
+│   ├── lexer.py      Indentation-aware tokenizer
+│   ├── parser.py     Recursive-descent parser
+│   ├── ast_nodes.py  AST node definitions
+│   ├── interpreter.py Tree-walking interpreter
+│   ├── verifier.py   Static analysis (type + sign + flow)
+│   ├── plugins.py    Plugin registry and hooks
+│   ├── repl.py       Interactive REPL
+│   └── stdlib/       Python-backed standard library
+├── tests/            pytest suite (179 tests)
+├── examples/         Sample programs
+├── extensions/       Plugin examples
+├── docs/             Language spec, plugin guide, verification docs
+└── haxor_cli.py      CLI entry point
 ```
 
-Static passes detect:
-- Type annotation mismatches
-- Division by zero (sign analysis)
-- Missing return paths (control-flow analysis)
+## Contributing
+
+Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Join the conversation in [Discussions](https://github.com/ao3575911/haxor/discussions).
 
 ## License
 
-MIT © 2030 Haxor Contributors
+MIT © 2026 Haxor Contributors
